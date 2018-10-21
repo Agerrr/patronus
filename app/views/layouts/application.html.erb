@@ -2,7 +2,9 @@
 <html>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.com/libraries/bootstrap-slider"></script>
   <head>
     <title>Patronus</title>
     <%= csrf_meta_tags %>
@@ -33,6 +35,183 @@
       </div>
     </nav>
 
-    <%= yield %>    
+    <%= yield %>  
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Invest In Jordan Littell</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Amount Requested: $5,000.00</p>
+
+        <div class="range-slider">
+          <p>
+            Your Contribution:
+            $<span id="range-value" class="range-slider__value">0</span>
+          </p>
+
+          <input class="range-slider__range" id="range-slider__range" type="range" value="0" min="0" max="5000">
+  
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button id="invest" type="button" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing" class="btn btn-primary ">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">You're Investment Card</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+              <!-- You can make it whatever width you want. I'm making it full width
+                   on <= small devices and 4/12 page width on >= medium devices -->
+              <div class="col-xs-12 col-md-12">
+              
+              
+                  <!-- CREDIT CARD FORM STARTS HERE -->
+                  <div class="panel panel-default credit-card-box">
+                      <div class="panel-body">
+                          <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+                              <div class="row">
+                                  <div class="col-xs-12">
+                                      <div class="form-group">
+                                          <label for="cardNumber">CARD NUMBER</label>
+                                          <div class="input-group">
+                                            <img width=90 height=40 src="http://www.stickpng.com/assets/images/58482363cef1014c0b5e49c1.png">
+                                              <input 
+                                                  type="tel"
+                                                  id="card-number"
+                                                  disabled
+                                                  class="form-control"
+                                                  name="cardNumber"
+                                                  placeholder="Valid Card Number"
+                                                  autocomplete="cc-number"
+                                                  required autofocus 
+                                              />
+                                              
+                                          </div>
+                                      </div>                            
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-xs-7 col-md-7">
+                                      <div class="form-group">
+                                          <label for="cardExpiry">
+                                            <span class="visible-xs-inline">EXP</label>
+                                          <input
+                                              id="exp" 
+                                              type="tel" 
+                                              disabled
+                                              class="form-control" 
+                                              name="cardExpiry"
+                                              placeholder="Date"
+                                              autocomplete="cc-exp"
+                                              required 
+                                          />
+                                      </div>
+                                  </div>
+                                  <div class="col-xs-5 col-md-5 pull-right">
+                                      <div class="form-group">
+                                          <label for="cardCVC">CV CODE</label>
+                                          <input 
+                                              type="tel" 
+                                              id="cv"
+                                              disabled
+                                              class="form-control"
+                                              name="cardCVC"
+                                              placeholder="CVC"
+                                              autocomplete="cc-csc"
+                                              required
+                                          />
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>            
+                  <!-- CREDIT CARD FORM ENDS HERE -->
+                  
+                  
+              </div>            
+              
+          </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   </body>
+
+  <footer>
+    <script>
+      var rangeSlider = function(){
+  var slider = $('.range-slider'),
+      range = $('.range-slider__range'),
+      value = $('.range-slider__value');
+    
+  slider.each(function(){
+    range.on('input', function(){
+      $("#range-value").html(this.value);
+    });
+  });
+};
+
+rangeSlider();
+
+      $('#invest').on('click', function () {
+        var $this = $(this);
+
+        $.post("/cards");
+        $this.text('Processing...');
+          setTimeout(function() {
+             $('#cancel').click();
+         }, 2000);
+      });
+
+      $('#toggle-card').click(function() {
+        $.get('/cards/1', function(resp) {
+          $('#card-number').val(resp.account_number);
+          $('#exp').val(resp.expiration_date);
+          $('#cv').val(resp.security_code);
+          $('#card-modal').modal({"show":true});
+        });
+      });
+
+      $('#submit-investment').on('click', function () {
+        var $this = $(this);
+
+        $this.text('Processing...');
+        $.post("/contracts");
+          setTimeout(function() {
+            $('#cancel-invest').click();
+            $('#no-requests').fadeOut(function() {
+              $('#requests').show();
+            });
+         }, 2000);
+      });
+    </script>
+  </footer>
 </html>

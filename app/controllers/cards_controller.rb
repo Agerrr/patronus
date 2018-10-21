@@ -11,7 +11,13 @@ class CardsController < ApplicationController
 			requisition_id: virtual_card_resp_json["requisitionId"])
 
 		@card.save
+    return @card.to_json
 	end
+
+  def show
+    @card = Card.last
+    render json: @card.to_json
+  end
 
 	private
 

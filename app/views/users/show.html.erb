@@ -10,9 +10,25 @@
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
     <div class="my-3 py-3">
       <h2 class="display-5">Investment Requests</h2>
-      <p class="lead">And an even wittier subheading.</p>
     </div>
-    <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    <div class="bg-light box-shadow mx-auto text-dark" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+      <% if @user.contracts.count < 1 %>
+
+      <div id="no-requests">
+        You currently have no investment requests
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#invest-modal" >Request Investment</button>
+      </div>
+
+      <div id="requests" style="display:none">
+        <div style="padding: 20px">
+          <i>You Requested <b>$5000</b> on <b>10/21</b></i>
+        </div>
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#invest-modal" >Request Investment</button>
+      </div>
+      <% else %>
+      
+      <% end %>
+    </div>
   </div>
 
   <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -27,6 +43,10 @@
     
     <div class="bg-dark box-shadow mx-auto text-white" style="padding: 20px; width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
       <h5>Funding Activity</h5>
+      <span id="investment">
+        <hr color="white">
+      <i>Recieved $5000.00 from <u id="toggle-card">Agnieszka Szefer</u> on 10/21</i>
+      </span>
       <hr color="white">
       <i>Recieved $10.00 from <u>Frank Williams</u> on 10/21</i>
       <hr color="white">
@@ -34,6 +54,39 @@
       <hr color="white">
       <i>Recieved $10.00 from <u>Frank Williams</u></i>
       <hr color="white">
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="invest-modal" tabindex="-1" role="dialog" aria-labelledby="invest-modal-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Investment Request</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Why do you need this investment?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Term Of Investment (In Months)</label>
+          <input class="form-control" type="number" placeholder="Duration in Months">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Amount (In Dollars)</label>
+          <input class="form-control" type="number" placeholder="Amount Needed">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="cancel-invest" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button id="submit-investment" type="button" class="btn btn-primary">Submit</button>
+      </div>
     </div>
   </div>
 </div>
