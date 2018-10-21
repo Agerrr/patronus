@@ -1,6 +1,7 @@
 # PATRONUS
-A platform to invest in Brilliant People powered by Machine Learning and Big Data.
-An attractive and philanthropic option to diversify your investment portfolio while empowering promising people and letting them thrive very early in their careers.
+![alt text](https://qph.fs.quoracdn.net/main-qimg-4a4eb6205ed3f02b7a1b26fba900e1b3-c)
+
+A platform to invest in Brilliant People powered by Machine Learning and Big Data. An attractive and philanthropic option to diversify your investment portfolio while empowering promising people and letting them thrive very early in their careers.
 
 Link to repository with the machine learning model predicting the entry level salary of a prospective investee: https://github.com/Agerrr/patronus_ml_model
 
