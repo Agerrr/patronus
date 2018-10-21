@@ -1,0 +1,7 @@
+apiKey: "IPQ933ISZ5IEQHHO7K6J21DPTZJjpFCZqV38JLWrQo1k9bs08"
+sharedSecret: "TC{9+enELH//RTBJ8IGjtobgAyr$fWYncixR6qJP"
+userId: "3RYS96EGKHNHHPZW1DEG21Y-I4yWyrrpr8SDf2ZhraDaO9NIM"
+password: "MlWBinTis6IcDBI70HBKruSwxJCuH1kA"
+cert: "/Users/jordan/Downloads/cert.pem"
+key: "/Users/jordan/Downloads/key.pem"
+visaUrl: "https://sandbox.api.visa.com/"

@@ -1,0 +1,2 @@
+module VirtualCardsHelper
+end
