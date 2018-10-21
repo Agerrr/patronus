@@ -1,24 +1,3 @@
-# README
+Link to repository with the machine learning model predicting the entry level salary of a prospective investee: https://github.com/Agerrr/patronus_ml_model
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Link to repository with Flask app serving the predictions of the model: https://github.com/Agerrr/patronus_flask_app
